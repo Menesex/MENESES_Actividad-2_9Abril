@@ -1,0 +1,66 @@
+'''
+Requerimiento: Una Empresa dedicada a la distribución de mercancía requiere el desarrollo de un aplicativo que permita registrar los pedidos solicitados por los diferentes clientes dentro de los cuales se tiene la siguiente información: Nombre del cliente, dirección, contacto, sexo, descripción de la casa o lugar para guiar al personal de entrega. Adicional a ello se debe colocar el nombre del producto, referencia y cantidades a solicitar. Todo esto debe quedar registrado en un diccionario y debe tener la posibilidad de ver todos los pedidos realizados.
+'''
+
+nDespacho = 0
+import os
+diccionario_Registro = {}
+
+def fnt_pantalla():
+    os.system('cls')
+    print('By menesex =)\n')
+def fnt_selector(op):
+    global control
+    global diccionario_Registro
+    if op == '0':
+        control = False
+    elif op == '1':
+        fnt_despacho()
+    elif op == '2':
+        fnt_consultar(diccionario_Registro)
+    
+def fnt_despacho():
+    global nDespacho
+    global diccionario_Registro
+    fnt_pantalla()
+    '''
+    Nombre del cliente, dirección, contacto, sexo, descripción de la casa o lugar para guiar al personal de entrega.
+    nombre del producto, referencia y cantidades a solicitar
+    '''
+    nombre = input('Nombre del cliente: ')
+    direccion = input('dirección: ')
+    contacto = input('contacto: ')
+    sexo = input('sexo: ')
+    des_Casa= input('Descripción de la casa')
+    producto = input('Nombre del producto: ')
+    referencia = input('Referencia: ')
+    cantidad = input('Cantidades a solicitar: ')
+    
+    if placa == '' or des_Carga == '' or conductor == '' or contacto == '' or ruta == '' or des_Vehiculo == '':
+        input('<ERROR> Datos incompletos. Rellenelos nuevamente')
+    else:
+        diccionario_Registro[conductor] ={
+        'placa': placa,
+        'Descripción de la carga': des_Carga,
+        'Contacto': contacto,
+        'Ruta': ruta,
+        'Descripción del vehiculo': des_Vehiculo
+        }
+    nDespacho += 1
+
+def fnt_consultar(diccionario):
+    global nDespacho
+    print('..:Registro actual:..')
+    print(f'Cantidad de despachos {nDespacho}\n')
+    for key, value in diccionario_Registro.items():
+        print(f'Nombre: {key}')
+        print(f'{value}')
+    input('')
+    
+    
+control = True
+while control == True:
+    fnt_pantalla()
+    print ('<<Registro de vehiculos (transportadora menesex)>>')
+    opcion = input('[0]Salir\n[1]Registrar despacho de vehiculo\n[2]Consultar despachos actuales\n--> ')
+    fnt_selector(opcion)

@@ -1,0 +1,73 @@
+'''
+EJERCICIO #1
+
+una transportadora requiere el desarrollo de una aplicación que permita llevar un registro de los despachos de sus vehiculos teniendo en cuenta:
+- Placa del vehiculo
+- Descripción del vehicculo
+- Nombre del conductor
+- Contacto del coductor
+- Ruta 
+- Descripción de la carga; 
+
+el número de despacho se genera de forma automática (una variable que se autoincremente).
+
+dicha información debe quedar registrada en un diccionario.
+el sistema debe realizar: registro de salida y mostrar salida
+'''
+nDespacho = 0
+import os
+diccionario_Registro = {}
+
+def fnt_pantalla():
+    os.system('cls')
+    print('By menesex =)\n')
+def fnt_selector(op):
+    global control
+    global diccionario_Registro
+    if op == '0':
+        control = False
+    elif op == '1':
+        fnt_despacho()
+    elif op == '2':
+        fnt_consultar(diccionario_Registro)
+    
+def fnt_despacho():
+    global nDespacho
+    global diccionario_Registro
+    fnt_pantalla()
+    
+    placa = input('Placa del vehiculo: ')
+    des_Carga = input('Descripción de la carga: ')
+    conductor = input('Nombre del conductor: ')
+    contacto = input('Contacto del coductor: ')
+    ruta = input('Ruta : ')
+    des_Vehiculo= input('Descripción del vehiculo')
+    
+    if placa == '' or des_Carga == '' or conductor == '' or contacto == '' or ruta == '' or des_Vehiculo == '':
+        input('<ERROR> Datos incompletos. Rellenelos nuevamente')
+    else:
+        diccionario_Registro[conductor] ={
+        'placa': placa,
+        'Descripción de la carga': des_Carga,
+        'Contacto': contacto,
+        'Ruta': ruta,
+        'Descripción del vehiculo': des_Vehiculo
+        }
+    nDespacho += 1
+
+def fnt_consultar(diccionario):
+    global nDespacho
+    print('..:Registro actual:..')
+    print(f'Cantidad de despachos {nDespacho}\n')
+    for key, value in diccionario_Registro.items():
+        print(f'Nombre: {key}')
+        print(f'{value}')
+    input('')
+    
+    
+control = True
+while control == True:
+    fnt_pantalla()
+    print ('<<Registro de vehiculos (transportadora menesex)>>')
+    opcion = input('[0]Salir\n[1]Registrar despacho de vehiculo\n[2]Consultar despachos actuales\n--> ')
+    fnt_selector(opcion)
